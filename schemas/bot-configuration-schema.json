@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "A representation of bot's configuration file.",
+    "type": "object",
+    "required": [
+        "botToken"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "botToken": {
+            "type": "string",
+            "description": "Bot's authorization token. Available in the developer portal."
+        },
+        "clientId": {
+            "type": "string",
+            "description": "Bot's client ID. Available in the developer portal."
+        }
+    }
+}

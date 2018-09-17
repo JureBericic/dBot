@@ -1,0 +1,13 @@
+{
+  "name": "dbot",
+  "version": "0.0.0",
+  "description": "A test bot for discord.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Jure Bericic",
+  "license": "MIT",
+  "devDependencies": {
+    "discord.js": "^11.4.2"
+  }
+}

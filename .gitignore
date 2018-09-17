@@ -1,0 +1,5 @@
+# bot files
+bot-configuration.json
+
+# general files
+node_modules/**

@@ -4,10 +4,15 @@
   "description": "A test bot for discord.",
   "main": "index.js",
   "scripts": {
+    "test": "mocha"
   },
   "author": "Jure Bericic",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
+    "chai": "^4.1.2",
     "discord.js": "^11.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

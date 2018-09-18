@@ -20,12 +20,16 @@ class ModuleHandler {
     
     loadModule(moduleName) {
         if (moduleName in this._loadedModules) {
-            throw new Error(`Module ${moduleName} already loaded.`);
+            throw new Error(`Cannot load "${moduleName}": module with same name already loaded.`);
         }
 
-        // TODO: try-catch if not exists
-        let loadedModule = require(path.join('..', 'bot_modules', moduleName));
-        let loadedModuleInstance = new loadedModule();
+        let loadedModuleInstance;
+        try {
+            let loadedModule = require(path.join('..', 'bot_modules', moduleName));
+            loadedModuleInstance = new loadedModule();
+        } catch (error) {
+            throw new Error(`Cannot load "${moduleName}": module does not exist.`);
+        }
 
         // Add loaded module to module register.
         this._loadedModules[moduleName] = loadedModuleInstance;
@@ -38,7 +42,7 @@ class ModuleHandler {
 
     unloadModule(moduleName) {
         if (!(moduleName in this._loadedModules)) {
-            throw new Error(`Module ${moduleName} is not loaded.`);
+            throw new Error(`Cannot unload "${moduleName}": no loaded module with such name.`);
         }
 
         let loadedModuleInstance = this._loadedModules[moduleName];
@@ -55,8 +59,6 @@ class ModuleHandler {
         }
         // Remove module from module register.
         delete this._loadedModules[moduleName];
-
-        let a = 1;
     }
 }
 

@@ -6,9 +6,12 @@ const path = require('path');
 class ConfigurationManager {
     constructor(configurationPath) {
         // Read file.
+        // TODO: check file against schema
+        const configuration = fs.readFileSync(configurationPath);
+        const configurationObject = JSON.parse(configuration);
 
-        this._botToken = '';
-        this._clientId = '';
+        this._botToken = configurationObject.botToken;
+        this._clientId = configurationObject.clientId;
     }
 
     get botToken() {
@@ -19,3 +22,5 @@ class ConfigurationManager {
         return this._clientId;
     }
 }
+
+module.exports = ConfigurationManager;

@@ -1,36 +1,35 @@
 'use strict';
 
 const Discord = require('discord.js');
-const botConfiguration = require('./bot-configuration');
+
+// Bootstrapping
+const ConfigurationManager = require('./src/configuration-manager');
+const IocRegistry = require('./src/ioc-registry');
+const MessageHandler = require('./src/message-handler');
 const ModuleHandler = require('./src/module-handler');
 
-const client = new Discord.Client();
-const botMention = `<@${botConfiguration.clientId}>`;
+const iocRegistry = new IocRegistry();
+
+const configurationManager = new ConfigurationManager('./bot-configuration.json');
+iocRegistry.registerInstance('configurationManager', configurationManager);
+
 const moduleHandler = new ModuleHandler();
+iocRegistry.registerInstance('moduleHandler', moduleHandler);
 
+const messageHandler = new MessageHandler(iocRegistry);
+iocRegistry.registerInstance('messageHandler', messageHandler);
 
+const client = new Discord.Client();
+const botMention = `<@${configurationManager.clientId}>`;
+
+// Configuration of responses to client events
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 })
 
-client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('pong');
-    }
-    else if (msg.content.startsWith(botMention)) {
-        console.log('Mention received.')
-        try {
-            handleMention(msg);
-        } catch (error) {
-            console.log('Error happened while handling mention.')
-        }
-        console.log('Mention handled.')
-    }
-});
+let callSignal = `<@${configurationManager.clientId}>`;
 
-client.login(botConfiguration.botToken);
+client.on('message', msg => messageHandler.processMessage(msg));
 
-
-function handleMention(message) {
-    message.reply('hello');
-}
+// Start the bot and login
+client.login(configurationManager.botToken);

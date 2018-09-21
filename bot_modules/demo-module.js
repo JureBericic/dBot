@@ -12,12 +12,12 @@ class DemoModule {
         return this._availableCommands;
     }
 
-    ping(message) {
-        message.reply('pong');
+    ping(msg) {
+        msg.reply('pong');
     }
 
-    hello(message) {
-        message.reply('hi');
+    hello(msg) {
+        msg.reply('hi');
     }
 }
 

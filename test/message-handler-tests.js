@@ -7,12 +7,19 @@ describe('Message handler tests', () => {
 
     describe('constructor', () => {
 
-        it('Should construct.', () => {
+        xit('Should construct.', () => {
             // Arrange and Act
             let messageHandler = new MessageHandler();
 
             // Assert
             expect(messageHandler).to.exist;
+        });
+    });
+
+    describe('test', () => {
+
+        it('tmp', () => {
+
         });
     });
 });

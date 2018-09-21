@@ -7,7 +7,7 @@ describe('Message handler tests', () => {
 
     describe('constructor', () => {
 
-        it('Should construct', () => {
+        it('Should construct.', () => {
             // Arrange and Act
             let messageHandler = new MessageHandler();
 

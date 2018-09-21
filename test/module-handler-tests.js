@@ -7,7 +7,7 @@ describe('Module handler tests', () => {
 
     describe('constructor', () => {
 
-        it('Should construct', () => {
+        it('Should construct.', () => {
             // Act
             let moduleHandler = new ModuleHandler();
     
@@ -15,7 +15,7 @@ describe('Module handler tests', () => {
             expect(moduleHandler).to.exist;
         });
     
-        it('Should initialize to empty elements', () => {
+        it('Should initialize to empty elements.', () => {
             // Act
             let moduleHandler = new ModuleHandler();
     
@@ -43,10 +43,10 @@ describe('Module handler tests', () => {
         it('Should throw when loading same module twice.', () => {
             // Arrange
             let moduleHandler = new ModuleHandler();
-            moduleHandler.loadModule('demo-module');
             let loadDemoModule = () => {
                 moduleHandler.loadModule('demo-module')
             };
+            loadDemoModule();
     
             // Act and Assert
             expect(loadDemoModule).to.throw(

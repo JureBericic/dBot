@@ -6,14 +6,14 @@ const sinon = require('sinon');
 
 let mockIocRegistry = {
     getInstance: sinon.stub()
-}
+};
 
 let mockConfigurationManager = {
     callSign: 'testCallSign'
-}
+};
 
 let mockModuleHandler = {
-}
+};
 
 mockIocRegistry.getInstance.withArgs(sinon.match('configurationManager')).returns(mockConfigurationManager);
 mockIocRegistry.getInstance.withArgs(sinon.match('moduleHandler')).returns(mockModuleHandler);
@@ -28,7 +28,9 @@ describe('Message handler tests', () => {
             let messageHandler = new MessageHandler(mockIocRegistry);            
 
             // Assert
+            /* jshint -W030 */
             expect(messageHandler).to.exist;
+            /* jshint +W030 */
             expect(messageHandler._configurationManager).to.equal(mockConfigurationManager);
             expect(messageHandler._moduleHandler).to.equal(mockModuleHandler);
         });

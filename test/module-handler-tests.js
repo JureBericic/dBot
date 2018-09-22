@@ -12,7 +12,9 @@ describe('Module handler tests', () => {
             let moduleHandler = new ModuleHandler();
     
             // Assert
+            /* jshint -W030 */
             expect(moduleHandler).to.exist;
+            /* jshint +W030 */
         });
     
         it('Should initialize to empty elements.', () => {
@@ -44,7 +46,7 @@ describe('Module handler tests', () => {
             // Arrange
             let moduleHandler = new ModuleHandler();
             let loadDemoModule = () => {
-                moduleHandler.loadModule('demo-module')
+                moduleHandler.loadModule('demo-module');
             };
             loadDemoModule();
     
@@ -58,7 +60,7 @@ describe('Module handler tests', () => {
             // Arrange
             let moduleHandler = new ModuleHandler();
             let loadNonExistingModule = () => {
-                moduleHandler.loadModule('this-module-does-not-exist')
+                moduleHandler.loadModule('this-module-does-not-exist');
             };
     
             // Act and Assert
@@ -88,7 +90,7 @@ describe('Module handler tests', () => {
             // Arrange
             let moduleHandler = new ModuleHandler();
             let unloadNonLoadedModule = () => {
-                moduleHandler.unloadModule('this-module-was-not-loaded')
+                moduleHandler.unloadModule('this-module-was-not-loaded');
             };
 
             // Act and Assert

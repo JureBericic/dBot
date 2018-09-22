@@ -12,7 +12,9 @@ describe('IOC registry tests', () => {
             let iocRegistry = new IocRegistry();
 
             // Assert
+            /* jshint -W030 */
             expect(iocRegistry).to.exist;
+            /* jshint +W030 */
         });
 
         it('Should initialize to empty elements.', () => {
@@ -55,8 +57,8 @@ describe('IOC registry tests', () => {
             // Arrange
             let iocRegistry = new IocRegistry();
             let register = () => {
-                iocRegistry.registerInstance('aKey', 'anInstance')
-            }
+                iocRegistry.registerInstance('aKey', 'anInstance');
+            };
             register();
 
             expect(register).to.throw('Cannot register "aKey": instance with same key already exists.');
@@ -85,7 +87,7 @@ describe('IOC registry tests', () => {
             let iocRegistry = new IocRegistry();
             let getByNonExistingKey = () => {
                 iocRegistry.getInstance('thisKeyWasNotRegistered');
-            }
+            };
 
             // Act and Assert
             expect(getByNonExistingKey).to.throw('Cannot get "thisKeyWasNotRegistered": no such key registered.');

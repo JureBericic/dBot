@@ -23,7 +23,7 @@ class ConfigurationManager {
             this._callSign = configurationObject.callSign;
         }
         if (!configurationObject.loadOnStart) {
-            this._loadOnStart = []
+            this._loadOnStart = [];
         } else {
             this._loadOnStart = configurationObject.loadOnStart;
         }

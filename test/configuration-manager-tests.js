@@ -50,7 +50,7 @@ describe('Configuration manager tests', () => {
             // Arrange
             let configurationPath = './test/test-data/this-configuration-does-not-exists.json';
             let loadNonExistingConfiguration = () => {
-                new ConfigurationManager(configurationPath)
+                new ConfigurationManager(configurationPath);
             };
 
             // Act and Assert
@@ -61,7 +61,7 @@ describe('Configuration manager tests', () => {
             // Arrange
             let configurationPath = './test/test-data/bot-configuration-invalid.json';
             let loadInvalidConfiguration = () => {
-                new ConfigurationManager(configurationPath)
+                new ConfigurationManager(configurationPath);
             };
 
             // Act and Assert

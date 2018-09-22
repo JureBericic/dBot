@@ -3,21 +3,33 @@
 class MessageHandler {
     constructor(iocRegistry) {
         this._configurationManager = iocRegistry.getInstance('configurationManager');
-        this._moduleManager = iocRegistry.getInstance('moduleHandler');
-
-        this._callSignal = `<@${this._configurationManager.clientId}>`;
+        this._moduleHandler = iocRegistry.getInstance('moduleHandler');
     }
 
     processMessage(msg) {
-        console.log('processing message');
         // Only process messages that start with bot's call signal.
-        if (!msg.content.startsWith(this._callSignal)) {
-            console.log('not for me')
+        if (!msg.content.startsWith(this._configurationManager.callSign)) {
             return;
         }
 
-        console.log('for me');
-        msg.reply('Hello :)');
+        let remainingContent = msg.content.replace(this._configurationManager.callSign, '').trimStart();
+        if (!remainingContent) {
+            return;
+        }
+
+        // Parse command and load corresponding function.
+        let command = remainingContent.split(' ')[0];
+        let functionForCommand;
+        try {
+            functionForCommand = this._moduleHandler.getFunctionForCommand(command);
+        } catch (error) {
+            msg.reply(`command "${command}" is not registered.`);
+            return;
+        }
+
+        // Call function.
+        remainingContent = remainingContent.replace(command, '').trimStart();
+        functionForCommand(msg, remainingContent);
     }
 }
 

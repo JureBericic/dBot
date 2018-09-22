@@ -14,20 +14,18 @@ const configurationManager = new ConfigurationManager('./bot-configuration.json'
 iocRegistry.registerInstance('configurationManager', configurationManager);
 
 const moduleHandler = new ModuleHandler();
+moduleHandler.loadModule('demo-module');
 iocRegistry.registerInstance('moduleHandler', moduleHandler);
 
 const messageHandler = new MessageHandler(iocRegistry);
 iocRegistry.registerInstance('messageHandler', messageHandler);
 
 const client = new Discord.Client();
-const botMention = `<@${configurationManager.clientId}>`;
 
 // Configuration of responses to client events
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-})
-
-let callSignal = `<@${configurationManager.clientId}>`;
+});
 
 client.on('message', msg => messageHandler.processMessage(msg));
 

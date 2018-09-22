@@ -60,6 +60,22 @@ class ModuleHandler {
         // Remove module from module register.
         delete this._loadedModules[moduleName];
     }
+
+    getModuleForCommand(command) {
+        if (!(command in this._availableCommands)) {
+            throw new Error(`Cannot get module for "${command}": no such command registered.`);
+        }
+
+        return this._availableCommands[command];
+    }
+
+    getFunctionForCommand(command) {
+        if (!(command in this._availableCommands)) {
+            throw new Error(`Cannot get function for "${command}": no such command registered.`);
+        }
+
+        return this._availableCommands[command][command];
+    }
 }
 
 module.exports = ModuleHandler;

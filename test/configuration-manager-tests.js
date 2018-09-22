@@ -17,6 +17,7 @@ describe('Configuration manager tests', () => {
             // Assert
             expect(configurationManager.botToken).to.equal('testToken');
             expect(configurationManager.clientId).to.equal('testClientId');
+            expect(configurationManager.callSign).to.equal('testCallSign');
         });
 
         it('Should throw when configuration file not found.', () => {

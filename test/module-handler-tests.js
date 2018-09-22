@@ -74,7 +74,7 @@ describe('Module handler tests', () => {
             // Arrange
             let moduleHandler = new ModuleHandler();
             moduleHandler.loadModule('demo-module');
-    
+
             // Act
             moduleHandler.unloadModule('demo-module');
     
@@ -94,6 +94,64 @@ describe('Module handler tests', () => {
             // Act and Assert
             expect(unloadNonLoadedModule).to.throw(
                 'Cannot unload "this-module-was-not-loaded": no loaded module with such name.'
+            );
+        });
+    });
+
+    describe('getModuleForCommand', () => {
+
+        it('Should return correct module.', () => {
+            // Arrange
+            let moduleHandler = new ModuleHandler();
+            moduleHandler.loadModule('demo-module');
+
+            // Act
+            let returnedModule = moduleHandler.getModuleForCommand('ping');
+
+            // Assert
+            expect(returnedModule).to.equal(moduleHandler._loadedModules['demo-module']);
+        });
+
+        it('Should throw when no such command was registered.', () => {
+            // Arrange
+            let moduleHandler = new ModuleHandler();
+            moduleHandler.loadModule('demo-module');
+            let loadModuleForNonRegisteredCommand = () => {
+                moduleHandler.getModuleForCommand('nonRegisteredCommand');
+            };
+
+            // Act and Assert
+            expect(loadModuleForNonRegisteredCommand).to.throw(
+                'Cannot get module for "nonRegisteredCommand": no such command registered.'
+            );
+        });
+    });
+
+    describe('getFunctionForCommand', () => {
+
+        it('Should return correct function.', () => {
+            // Arrange
+            let moduleHandler = new ModuleHandler();
+            moduleHandler.loadModule('demo-module');
+
+            // Act
+            let returnedFunction = moduleHandler.getFunctionForCommand('ping');
+
+            // Assert
+            expect(returnedFunction).to.equal(moduleHandler._loadedModules['demo-module'].ping);
+        });
+
+        it('Should throw when no such command was registered.', () => {
+            // Arrange
+            let moduleHandler = new ModuleHandler();
+            moduleHandler.loadModule('demo-module');
+            let loadFunctionForNonRegisteredCommand = () => {
+                moduleHandler.getFunctionForCommand('nonRegisteredCommand');
+            };
+
+            // Act and Assert
+            expect(loadFunctionForNonRegisteredCommand).to.throw(
+                'Cannot get function for "nonRegisteredCommand": no such command registered.'
             );
         });
     });

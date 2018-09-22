@@ -14,6 +14,10 @@
         "clientId": {
             "type": "string",
             "description": "Bot's client ID. Available in the developer portal."
+        },
+        "callSignal": {
+            "type": "string",
+            "description": "Bot will only respond if message starts with its call sign."
         }
     }
 }

@@ -12,6 +12,7 @@ class ConfigurationManager {
 
         this._botToken = configurationObject.botToken;
         this._clientId = configurationObject.clientId;
+        this._callSign = configurationObject.callSign;
     }
 
     get botToken() {
@@ -20,6 +21,10 @@ class ConfigurationManager {
 
     get clientId() {
         return this._clientId;
+    }
+
+    get callSign() {
+        return this._callSign;
     }
 }
 

@@ -4,7 +4,8 @@ class DemoModule {
     constructor() {
         this._availableCommands = [
             'ping',
-            'hello'
+            'hello',
+            'echo'
         ]
     }
 
@@ -18,6 +19,10 @@ class DemoModule {
 
     hello(msg) {
         msg.reply('hi');
+    }
+
+    echo(msg, content) {
+        msg.reply(content)
     }
 }
 

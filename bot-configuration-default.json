@@ -1,5 +1,8 @@
 {
     "botToken": "token goes here",
     "clientId": "client ID goes here",
-    "callSign": "call sign goes here"
+    "callSign": "@mention",
+    "loadOnStart": [
+        "demo-module"
+    ]
 }

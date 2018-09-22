@@ -1,0 +1,8 @@
+{
+    "botToken": "testToken",
+    "clientId": "testClientId",
+    "callSign": "testCallSign",
+    "loadOnStart": [
+        "test-module"
+    ]
+}

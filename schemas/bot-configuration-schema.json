@@ -3,7 +3,8 @@
     "description": "A representation of bot's configuration file.",
     "type": "object",
     "required": [
-        "botToken"
+        "botToken",
+        "clientId"
     ],
     "additionalProperties": false,
     "properties": {
@@ -15,9 +16,17 @@
             "type": "string",
             "description": "Bot's client ID. Available in the developer portal."
         },
-        "callSignal": {
+        "callSign": {
             "type": "string",
             "description": "Bot will only respond if message starts with its call sign."
+        },
+        "loadOnStart": {
+            "type": "array",
+            "description": "Modules that are loaded on start-up.",
+            "items": {
+                "type": "string",
+                "description": "Module name."
+            }
         }
     }
 }

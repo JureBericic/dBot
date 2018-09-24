@@ -27,6 +27,11 @@ class ConfigurationManager {
         } else {
             this._loadOnStart = configurationObject.loadOnStart;
         }
+        if (!configurationObject.admins) {
+            this._admins = [];
+        } else {
+            this._admins = configurationObject.admins;
+        }
     }
 
     // Getters
@@ -44,6 +49,10 @@ class ConfigurationManager {
 
     get loadOnStart() {
         return this._loadOnStart;
+    }
+
+    get admins() {
+        return this._admins;
     }
 }
 

@@ -13,10 +13,7 @@ const iocRegistry = new IocRegistry();
 const configurationManager = new ConfigurationManager('./bot-configuration.json');
 iocRegistry.registerInstance('configurationManager', configurationManager);
 
-const moduleHandler = new ModuleHandler();
-for (let moduleName of configurationManager.loadOnStart) {
-    moduleHandler.loadModule(moduleName);
-}
+const moduleHandler = new ModuleHandler(iocRegistry);
 iocRegistry.registerInstance('moduleHandler', moduleHandler);
 
 const messageHandler = new MessageHandler(iocRegistry);
@@ -24,6 +21,11 @@ iocRegistry.registerInstance('messageHandler', messageHandler);
 
 const client = new Discord.Client();
 iocRegistry.registerInstance('client', client);
+
+// Load all modules.
+for (let moduleName of configurationManager.loadOnStart) {
+    moduleHandler.loadModule(moduleName);
+}
 
 // Configuration of responses to client events
 client.on('ready', () => {

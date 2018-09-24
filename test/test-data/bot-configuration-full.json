@@ -4,5 +4,8 @@
     "callSign": "testCallSign",
     "loadOnStart": [
         "test-module"
+    ],
+    "admins": [
+        "testAdminSnowflake"
     ]
 }

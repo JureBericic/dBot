@@ -27,6 +27,14 @@
                 "type": "string",
                 "description": "Module name."
             }
+        },
+        "admins": {
+            "type": "array",
+            "description": "Administrators of the bot.",
+            "items": {
+                "type": "string",
+                "description": "Snowflake of the user."
+            }
         }
     }
 }

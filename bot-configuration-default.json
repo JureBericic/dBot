@@ -4,5 +4,8 @@
     "callSign": "@mention",
     "loadOnStart": [
         "demo-module"
+    ],
+    "admins": [
+        "admin's snowflake goes here"
     ]
 }

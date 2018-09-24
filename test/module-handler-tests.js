@@ -140,7 +140,7 @@ describe('Module handler tests', () => {
             let returnedFunction = moduleHandler.getFunctionForCommand('ping');
 
             // Assert
-            expect(returnedFunction).to.equal(moduleHandler._loadedModules['demo-module'].ping);
+            expect(returnedFunction.name).to.equal('bound ping');
         });
 
         it('Should throw when no such command was registered.', () => {

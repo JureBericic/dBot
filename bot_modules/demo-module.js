@@ -6,7 +6,7 @@ class DemoModule {
             'ping',
             'hello',
             'echo'
-        ]
+        ];
     }
 
     get availableCommands() {
@@ -22,7 +22,7 @@ class DemoModule {
     }
 
     echo(msg, content) {
-        msg.reply(content)
+        msg.reply(content);
     }
 }
 

@@ -3,7 +3,10 @@
 const path = require('path');
 
 class ModuleHandler {
-    constructor() {
+    constructor(iocRegistry) {
+        // IOC registry.
+        this._iocRegistry = iocRegistry;
+
         // Register of loaded modules.
         this._loadedModules = {};
         // Register of available commands.
@@ -23,12 +26,18 @@ class ModuleHandler {
             throw new Error(`Cannot load "${moduleName}": module with same name already loaded.`);
         }
 
+        let loadedModule;
         let loadedModuleInstance;
         try {
-            let loadedModule = require(path.join('..', 'bot_modules', moduleName));
-            loadedModuleInstance = new loadedModule();
+            loadedModule = require(path.join('..', 'bot_modules', moduleName));
+            
         } catch (error) {
             throw new Error(`Cannot load "${moduleName}": module does not exist.`);
+        }
+        try {
+            loadedModuleInstance = new loadedModule(this._iocRegistry);
+        } catch (error) {
+            throw new Error(`Cannot load "${moduleName}": error while constructiong an instance.`);
         }
 
         // Add loaded module to module register.
@@ -74,7 +83,7 @@ class ModuleHandler {
             throw new Error(`Cannot get function for "${command}": no such command registered.`);
         }
 
-        return this._availableCommands[command][command];
+        return this._availableCommands[command][command].bind(this._availableCommands[command]);
     }
 }
 

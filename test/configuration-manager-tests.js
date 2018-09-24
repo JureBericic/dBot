@@ -19,6 +19,7 @@ describe('Configuration manager tests', () => {
             expect(configurationManager.clientId).to.equal('testClientId');
             expect(configurationManager.callSign).to.equal(`<@testClientId>`);
             expect(configurationManager.loadOnStart).to.deep.equal([]);
+            expect(configurationManager.admins).to.deep.equal([]);
         });
 
         it('Should construct and initialize with full configuration.', () => {
@@ -33,6 +34,7 @@ describe('Configuration manager tests', () => {
             expect(configurationManager.clientId).to.equal('testClientId');
             expect(configurationManager.callSign).to.equal(`testCallSign`);
             expect(configurationManager.loadOnStart).to.deep.equal(['test-module']);
+            expect(configurationManager.admins).to.deep.equal(['testAdminSnowflake']);
         });
 
         it('Should correctly handle "@mention" as call sign.', () => {

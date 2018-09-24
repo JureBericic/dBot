@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "mocha",
-        "lint:js": "jshint index.js src test --verbose"
+        "lint:js": "jshint index.js src test bot_modules --verbose"
     },
     "author": "Jure Bericic",
     "license": "MIT",

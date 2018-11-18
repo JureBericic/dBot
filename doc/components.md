@@ -6,3 +6,4 @@ Components bot is made of:
 - [configuration manager](components/configuration-manager.md)
 - [module handler](components/module-handler.md)
 - [message handler](components/message-handler.md)
+- [json persistance service](components/json-persistance-service.md)

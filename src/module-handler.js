@@ -30,7 +30,6 @@ class ModuleHandler {
         let loadedModuleInstance;
         try {
             loadedModule = require(path.join('..', 'bot_modules', moduleName));
-            
         } catch (error) {
             throw new Error(`Cannot load "${moduleName}": module does not exist.`);
         }

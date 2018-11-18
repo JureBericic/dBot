@@ -20,7 +20,6 @@ mockIocRegistry.getInstance.withArgs(sinon.match('moduleHandler')).returns(mockM
 
 describe('Message handler tests', () => {
 
-
     describe('constructor', () => {
 
         it('Should construct and initialize.', () => {

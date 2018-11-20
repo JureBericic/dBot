@@ -1,5 +1,6 @@
 # bot files
 bot-configuration.json
+!data/.gitkeep
 data/**
 
 # general files

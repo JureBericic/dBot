@@ -18,18 +18,34 @@ class MessageHandler {
         }
 
         // Parse command and load corresponding function.
-        let command = remainingContent.split(' ')[0];
+        let command = remainingContent.split(/\s+/)[0];
         let functionForCommand;
         try {
             functionForCommand = this._moduleHandler.getFunctionForCommand(command);
         } catch (error) {
-            msg.reply(`command "${command}" is not registered.`);
+            msg.reply(`Command "${command}" is not registered.`);
             return;
         }
 
         // Call function.
         remainingContent = remainingContent.replace(command, '').trimStart();
-        functionForCommand(msg, remainingContent);
+        try {
+            functionForCommand(msg, remainingContent);
+        } catch (error) {
+            msg.reply('Command failed.')
+        }
+        
+    }
+
+    // Splits message content into next token and remainder
+    getNextToken(content) {
+        const token = content.split(' ')[0];
+        const remainingContent = content.replace(token, '').trimStart();
+
+        return {
+            token,
+            remainingContent
+        };
     }
 }
 

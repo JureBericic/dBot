@@ -4,13 +4,16 @@
     "description": "A test bot for discord.",
     "main": "index.js",
     "scripts": {
-        "test": "mocha",
-        "lint:js": "jshint index.js src test bot_modules --verbose"
+        "test": "mocha 'test*/**/*-tests.js'",
+        "lint:js": "jshint index.js src test bot_modules --verbose",
+        "start": "node index.js",
+        "start-debug": "node --inspect-brk index.js"
     },
     "author": "Jure Bericic",
     "license": "MIT",
     "dependencies": {
-        "discord.js": "^11.4.2"
+        "discord.js": "^11.4.2",
+        "uuid": "^3.3.2"
     },
     "devDependencies": {
         "ajv": "^6.5.3",

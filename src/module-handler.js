@@ -21,6 +21,10 @@ class ModuleHandler {
         return this._availableCommands;
     }
     
+    static getModulePath(moduleName) {
+        return path.join('..', 'bot_modules', moduleName);
+    }
+
     loadModule(moduleName) {
         if (moduleName in this._loadedModules) {
             throw new Error(`Cannot load "${moduleName}": module with same name already loaded.`);
@@ -29,7 +33,7 @@ class ModuleHandler {
         let loadedModule;
         let loadedModuleInstance;
         try {
-            loadedModule = require(path.join('..', 'bot_modules', moduleName));
+            loadedModule = require(ModuleHandler.getModulePath(moduleName));
         } catch (error) {
             throw new Error(`Cannot load "${moduleName}": module does not exist.`);
         }
@@ -67,6 +71,8 @@ class ModuleHandler {
         }
         // Remove module from module register.
         delete this._loadedModules[moduleName];
+        // Remove module from require cache.
+        delete require.cache[require.resolve(ModuleHandler.getModulePath(moduleName))];
     }
 
     getModuleForCommand(command) {

@@ -1,24 +1,26 @@
 'use strict';
 
-const Discord = require('discord.js');
-
 // Bootstrapping
-const ConfigurationManager = require('./src/configuration-manager');
 const IocRegistry = require('./src/ioc-registry');
-const MessageHandler = require('./src/message-handler');
-const ModuleHandler = require('./src/module-handler');
-
 const iocRegistry = new IocRegistry();
 
+const ConfigurationManager = require('./src/configuration-manager');
 const configurationManager = new ConfigurationManager('./bot-configuration.json');
 iocRegistry.registerInstance('configurationManager', configurationManager);
 
+const JsonPersistanceService = require('./src/json-persistance-service');
+const jsonPersistanceService = new JsonPersistanceService();
+iocRegistry.registerInstance('jsonPersistanceService', jsonPersistanceService);
+
+const ModuleHandler = require('./src/module-handler');
 const moduleHandler = new ModuleHandler(iocRegistry);
 iocRegistry.registerInstance('moduleHandler', moduleHandler);
 
+const MessageHandler = require('./src/message-handler');
 const messageHandler = new MessageHandler(iocRegistry);
 iocRegistry.registerInstance('messageHandler', messageHandler);
 
+const Discord = require('discord.js');
 const client = new Discord.Client();
 iocRegistry.registerInstance('client', client);
 
